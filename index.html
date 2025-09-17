@@ -7,12 +7,31 @@
     <script src="main.js"></script>
     <title>Lights Out!</title>
 </head>
-<body>
+<body id="body">
+    <button class="btn" id="blogBtn">Show Blog</button>
+    <button class="btn" id="rulesBtn">Rules</button>
+    <div id="blog" class="blog hidden">
+        <h2>Project Thoughts</h2>
+        <button class="close" id="closeBlog">X</button>
+        <p>I first came across it in a textbook as a fun example of what is possible with HTML, CSS, and JavaScript. I thought the game was neat and that it would be a fun challenge to try and recreate on my own.</p>
+        <p>There were a few times when I needed to reference other folks' completed code to get mine working, or to get going in the right direction, but I created as much of it on my own as possible. It would be fair to call this a 'guided' project, but I still learned a lot and wrote what I could without help.</p>
+        <p>The game still needs a move counter or a timer feature. Something to 'gamify' the project a little more. I saw one version that had an 'auto solve' button. I may add some features later.</p>
+    </div>
+    <div id="rules" class="rules hidden">
+        <h2>Lights Out Rules</h2>
+        <button class="close" id="closeRules">X</button>
+        <ul>
+            <li>The objective is simple... Turn out all the lights</li>
+            <li>Clicking a square toggles the light for that square</li>
+            <li>It also toggles squares that share a side with the one you clicked</li>
+            <li>Diagonal squares will not be toggled</li>
+        </ul>
+    </div>
     <main>
         <div id="gridSpace"></div>
-        <div id="info">Here's where game info will be presented.</div>
+        <div class="info" id="info">Here's where game info will be presented.</div>
         <div class="button-container">
-            <input type="button" id="newGameButton3x3" value="New 3x3"><input type="button" id="newGameButton5x5" value="New 5x5">
+            <input type="button" class="btn new-game" id="newGameButton3x3" value="New 3x3"><input type="button" class="btn new-game" id="newGameButton5x5" value="New 5x5">
         </div>
     </main>
 </body>

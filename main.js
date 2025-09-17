@@ -1,5 +1,7 @@
 window.addEventListener('DOMContentLoaded', domLoaded);
 
+let newGameBtns;
+
 const currentGame = {
     "rowCount": 3,
     "columnCount": 3,
@@ -11,8 +13,33 @@ const currentGame = {
 }
 
 function domLoaded() {
+    const blog = document.getElementById('blog');
+    const showBlog = document.getElementById('blogBtn');
+    const rules = document.getElementById('rules');
+    const showRules = document.getElementById('rulesBtn');
+    const clsBlog = document.getElementById('closeBlog');
+    const clsRules = document.getElementById('closeRules');
+    newGameBtns = document.querySelectorAll('.new-game');
+    console.log(newGameBtns);
+
     const newGameBtn3 = document.getElementById('newGameButton3x3');
     const newGameBtn5 = document.getElementById('newGameButton5x5');
+
+    showBlog.addEventListener('click', function() {
+        blog.classList.remove('hidden');
+    })
+    
+    showRules.addEventListener('click', function() {
+        rules.classList.remove('hidden');
+    })
+    
+    clsBlog.addEventListener('click', function() {
+        blog.classList.add('hidden');
+    })
+    
+    clsRules.addEventListener('click', function() {
+        rules.classList.add('hidden');
+    })
 
     newGameBtn3.addEventListener('click', function() {
         newGame(currentGame, false);
@@ -26,7 +53,13 @@ function domLoaded() {
 
 function newGame(game, is5x5) {
     const message = document.getElementById('info');
-    message.innerText = '';
+    message.innerText = 'Turn out all the lights';
+    message.classList.remove('end-game');
+    body.style.backgroundImage = 'radial-gradient(circle at 50% 40%, #FFFFaa, black 45%)';
+    newGameBtns.forEach(btn => {
+        btn.style.animation = 'none';
+        btn.style.opacity = '0';
+    });
 
     if (is5x5) {
         game.rowCount = 5;
@@ -57,7 +90,13 @@ function newGame(game, is5x5) {
 function checkIfWin(game) {
     if (allLightsOut(game)) {
         const message = document.getElementById('info');
-        message.innerText = 'Congratulations! Play again?';
+        message.innerText = 'Whoa! It got dark in here... \nPlay again?';
+        message.classList.add('end-game');
+        body.style.backgroundImage = 'none';
+
+        newGameBtns.forEach(btn => {
+            btn.style.animation = 'fade-in 3s linear 4s 1 forwards, button-glow 3s linear 4s infinite';
+        });
 
         return true;
     }
